@@ -1,12 +1,10 @@
 #BH 2nd personal library program
 #Define the library
-library = []
-#Choice = None
-choice = None
+library = {}
 #Function to add a new item
 def add_book():
     new_book = input("What would you like to add to your library?\n")
-    library.append(new_book)
+    library.add(new_book)
 #Function to remove an item
 def remove_book():
     print(library)
@@ -23,12 +21,12 @@ def search_book():
     else:
         should_cpu_add_book = input("That book is not in your library, would you like me to add it? y/n\n")
         if should_cpu_add_book == "y":
-            library.append(book_to_search_for)
+            library.add(book_to_search_for)
         else:
             pass
 #function to run the game
-def game(choice):
-    while choice != "5":
+def start_library():
+    while True:
     #ask user what they would like to do
         choice = input("What would you like to do? \n1. View my library \n2. Add to my library \n3. Remove from my library \n4. Search for a book in my library \n5. Exit \n")
         if choice == "1":
@@ -45,6 +43,7 @@ def game(choice):
             exit
         elif choice == "5":
             print("Bye-bye!")
+            break
         else:
             print("That is not an option.")
-game(choice)
+start_library()
