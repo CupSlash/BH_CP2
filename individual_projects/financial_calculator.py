@@ -1,27 +1,29 @@
 #BH 2nd Financial Calculator
 #FUNCTION
+def calculate_compound_interest(P, r, t):
+    A = P * (1+r/12)**(12*t)
+    return A
 def application():
-    def tip_discount_calculator(tip_or_discount):
-            bill = float(input("How much is the bill?"))
-            modifier = float(input(f"What is the {tip_or_discount}?"))
-            if tip_or_discount == "tip":
-                total = bill + modifier
-            else:
-                total = bill - modifier
-            print(f"your total is ${total}")
-    def savings_time():
+    def calculate_tip_discount(tip_or_discount):
+        bill = float(input("How much is the bill?"))
+        modifier = float(input(f"What is the {tip_or_discount}?"))
+        if tip_or_discount == "tip":
+            total = bill + modifier
+        else:
+            total = bill - modifier
+        print(f"your total is ${total:.2f}")
+    def process_savings_time():
         saving_amount = float(input("What amount are you saving to?"))
         contribution_money = float(input("How much money are you contributing monthly?"))
         months = saving_amount/contribution_money
-        print(f"It will take {months} months to save ${saving_amount}")
-    def compund_interest():
-        starting_amount = float(input("What is your starting amount"))
-        interest_rate = float(input("What is your yearly interest rate as a decimal?"))
-        time_compounding = float(input("How many years will you spend compounding"))
-        investment_gain = (interest_rate + 1)**time_compounding
-        final_amount = starting_amount * investment_gain
-        print(f"In {time_compounding} years, you will have ${final_amount}")
-    def budget_allocator():
+        print(f"It will take {months} months to save ${saving_amount:.2f}")
+    def process_compound_interest():
+        P = float(input("What is your starting amount?"))
+        r = float(input("What is your yearly interest rate as a decimal?"))
+        t = float(input("How many years will you spend compounding?"))
+        A = calculate_compound_interest(P, r, t)
+        print(f"In {t} years, you will have ${A:.2f}")
+    def process_budget_allocation():
         monthly_income = float(input("What is your monthly income:"))
         needs_percent = float(input("What decimal percentage of your monthly income is spent on things you need?"))
         wants_percent = float(input("What decimal percentage of your monthly income is spent on things you want?"))
@@ -29,33 +31,33 @@ def application():
         needs_cash = monthly_income * needs_percent
         wants_cash = monthly_income * wants_percent
         savings_cash = monthly_income * savings_percent
-        print(f"You spend ${needs_cash} on your monthly needs, ${wants_cash} on your monthly wants, and ${savings_cash} goes into your savings account each month.")
-    def sales_price():
+        print(f"You spend ${needs_cash:.2f} on your monthly needs, ${wants_cash:.2f} on your monthly wants, and ${savings_cash:.2f} goes into your savings account each month.")
+    def process_sales_price():
         tip_or_discount = "discount"
-        tip_discount_calculator(tip_or_discount)
-    def tip_calculator():
+        calculate_tip_discount(tip_or_discount)
+    def process_tip():
         tip_or_discount = "tip"
-        tip_discount_calculator(tip_or_discount)
+        calculate_tip_discount(tip_or_discount)
     def calculator():
         while True:
             #ask what mode they want to do
             mode_choice = input("Please choose the number that corresponds to your choice:\n 1. Savings Time Calculator\n 2. Compound Interest Calculator\n 3. Budget Allocator\n 4. Sale Price Calculator\n 5. Tip Calculator\n 6. Exit\n")
             #find out what they said
             if mode_choice == "1":
-                savings_time()
+                process_savings_time()
             #Savings time calculator
             elif mode_choice == "2":
-                compund_interest()
+                process_compound_interest()
             #Compund interest calculator
             elif mode_choice == "3":
             #Budget allocator
-                budget_allocator
+                process_budget_allocation()
             elif mode_choice == "4":
             #sales price
-                sales_price
+                process_sales_price()
             elif mode_choice == "5":
             #tip calculator
-                tip_calculator()
+                process_tip()
             elif mode_choice == "6":
                 print("bye!")
                 break

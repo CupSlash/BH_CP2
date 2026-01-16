@@ -1,6 +1,6 @@
 #BH 2nd personal library program
 #Define the library
-library = {}
+library = set()
 #Function to add a new item
 def add_book():
     new_book = input("What would you like to add to your library?\n")
