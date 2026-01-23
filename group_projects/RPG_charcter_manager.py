@@ -7,7 +7,10 @@
 #    compare_second_character = input(characters, "Select your second character.\n")
 #    while compare_second_character not in characters:
 #        print("Try again. That character doesn't exit yet. :(")
-#        compare_second_character = input(characters, "Select your first character.\n")  
+#        compare_second_character = input(characters, "Select your first character.\n")
+#    str_stat_difference = (First character's strength stat) - (Second character's strength stat)
+#    print(str_stat_difference)
+#    Repeat lines 11 and 12 for every stat.
 #def search_for_player:
 #    stat_to_search_by = input("What stat would you like to search by, race, class, level, str, dex, cha, int, or name?\n").strip().lower()
 #    if stat_to_search_by == "race":
