@@ -21,7 +21,7 @@
 #print ("Code ends")
 
 import csv
-with open("BH_CP2\\notes\sample.csv", 'w', newline='') as csvfile:
+with open("notes\sample.csv", 'w', newline='') as csvfile:
     fieldnames = ['username', 'favorite color']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
