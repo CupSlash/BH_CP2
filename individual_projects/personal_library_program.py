@@ -1,28 +1,35 @@
 #BH 2nd personal library program
-#Function to view the library
+#imports
 import csv
+import copy
+#create library reader
 library_reader = csv.DictReader(open("individual_projects\library.csv"))
+#new save library function
 def save_library(library):
     with open("individual_projects\library.csv", "w", newline='') as f:
         writer = csv.DictWriter(f, fieldnames = ["title", "author", "year", "genre"])
         writer.writeheader()
         for book in library:    
             writer.writerow(book)
+#Function to load library from csv
 def load_library(library_reader):
     library = []
     for book in library_reader:
         library.append(book)
     return library
+#Function to view the library
 def view_library(library, is_detailed):
     if len(library) == 0:
         print("Your library is empty.\n")
     else:
         print("Here are the books in your library:\n")
+    book_num = 0
     for book in library:
+        book_num += 1
         if is_detailed:
-            print(f" {book['title']} by {book['author']} released in {book['year']} under the genre {book['genre']}\n")
+            print(f"{book_num} {book['title']} by {book['author']} released in {book['year']} under the genre {book['genre']}\n")
         else:
-            print(f" {book['title']} by {book['author']}\n")
+            print(f"{book_num}. {book['title']} by {book['author']}\n")
 #Function to add a new item
 def add_book(library):
     new_title = input("What is the title of the book?\n")
@@ -31,15 +38,13 @@ def add_book(library):
     new_genre = input(f"What genre is {new_title}?\n")
     library.append({"title" : new_title, "author" : new_author, "year" : new_year, "genre" : new_genre})
 #Function to remove an item
-def remove_book(library_reader):
-    message = "Enter the number of the book you would like to remove.\n"
-    book_num = 1
-    view_library(library_reader, is_detailed=False)
-    selected_book_num = int(input(message))
-    if selected_book_num <= len(library_reader):
-        del library_reader[selected_book_num - 1]
+def remove_book(library):
+    view_library(library, is_detailed=False)
+    selected_book_num = int(input("Enter the number of the book you would like to remove.\n"))
+    if selected_book_num <= len(library):
+        del library[selected_book_num - 1]
     else:
-        print("That book is not in your library")
+        print("That book is not in your library.")
 #Function to search the items
 def search_book(library_reader):
     selected_option = input("What would you like to search by?\n 1. Title \n 2. Author \n")
@@ -64,6 +69,7 @@ def update_book(library_reader):
 #function to run the game
 def start_library(library_reader):
     library = load_library(library_reader)
+    library_copy = copy.deepcopy(library)
     while True:
     #ask user what they would like to do
         choice = input("What would you like to do? \n1. View my library (simple) \n2. View my library (detailed) \n3. Add to my library \n4. Remove from my library \n5. Search for a book in my library \n6. Update a book in my library \n7. Save my library \n8. Exit \n")
@@ -77,7 +83,7 @@ def start_library(library_reader):
             add_book(library)
         elif choice == "4":
     #Function to remove an item
-            remove_book(library_reader)
+            remove_book(library)
         elif choice == "5":
     #Function to search the items
             search_book(library_reader)
@@ -87,10 +93,14 @@ def start_library(library_reader):
         elif choice == "7":
     #Function to save the library
             save_library(library)
+            library_copy = copy.deepcopy(library)
         elif choice == "8":
     #Exit the program
+            if library != library_copy:
+                save = input("You have unsaved changes. Would you like to save them? y/n\n")
+                if save == "y":
+                    save_library(library)
             print("Bye-bye!")
-            break
         else:
     #Invalid input
             print("That is not an option.")
