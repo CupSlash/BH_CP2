@@ -4,6 +4,15 @@ import csv
 import copy
 #create library reader
 library_reader = csv.DictReader(open("individual_projects\library.csv"))
+#Function to print books
+def print_books(books, is_detailed):
+    book_num = 0
+    for book in books:
+        book_num += 1
+        if is_detailed:
+            print(f"{book_num}. {book['title']} by {book['author']} released in {book['year']} under the genre {book['genre']}\n")
+        else:
+            print(f"{book_num}. {book['title']} by {book['author']}\n")
 #new save library function
 def save_library(library):
     with open("individual_projects\library.csv", "w", newline='') as f:
@@ -23,13 +32,7 @@ def view_library(library, is_detailed):
         print("Your library is empty.\n")
     else:
         print("Here are the books in your library:\n")
-    book_num = 0
-    for book in library:
-        book_num += 1
-        if is_detailed:
-            print(f"{book_num} {book['title']} by {book['author']} released in {book['year']} under the genre {book['genre']}\n")
-        else:
-            print(f"{book_num}. {book['title']} by {book['author']}\n")
+    print_books(library, is_detailed)
 #Function to add a new item
 def add_book(library):
     new_title = input("What is the title of the book?\n")
@@ -41,31 +44,64 @@ def add_book(library):
 def remove_book(library):
     view_library(library, is_detailed=False)
     selected_book_num = int(input("Enter the number of the book you would like to remove.\n"))
-    if selected_book_num <= len(library):
+    if selected_book_num <= len(library) and selected_book_num >= 1:
         del library[selected_book_num - 1]
     else:
         print("That book is not in your library.")
 #Function to search the items
-def search_book(library_reader):
-    selected_option = input("What would you like to search by?\n 1. Title \n 2. Author \n")
-    book_found = False
+def search_book(library):
+    selected_option = input("What would you like to search by?\n 1. Title \n 2. Author \n 3. Year \n 4. Genre\n")
+    matching_books = []
     if selected_option == "1":
         title_to_search_for = input("What book title would you like to search for?\n")
-        for book in library_reader:
-            if book[0] == title_to_search_for:
-                print(f"{book[0]} by {book[1]}\n")
-                book_found = True
+        for book in library:
+            if book["title"] == title_to_search_for:
+                matching_books.append(book)
     elif selected_option == "2":
         author_to_search_for = input("What author would you like to search for?\n")
-        for book in library_reader:
-            if book[1] == author_to_search_for:
-                print(f"{book[0]} by {book[1]}\n")
-                book_found = True
-    if book_found == False:
+        for book in library:
+            if book["author"] == author_to_search_for:
+                matching_books.append(book)
+    elif selected_option == "3":
+        year_to_search_for = input("What year would you like to search for?\n")
+        for book in library:
+            if book["year"] == year_to_search_for:
+                matching_books.append(book)
+    elif selected_option == "4":
+        genre_to_search_for = input("What genre would you like to search for?\n")
+        for book in library:
+            if book["genre"] == genre_to_search_for:
+                matching_books.append(book)
+    else:
+        print("That is not an option.")
+    if matching_books == []:
         print("No search results.")
-def update_book(library_reader):
-    print(library_reader)
-    book_to_update = input("Select a book to update.\n")
+    else:
+        print("Here are the qualifying books:\n")
+        print_books(matching_books, is_detailed = True)
+#Function for updating books
+def update_book(library):
+    view_library(library, is_detailed = True)
+    selected_book_num = int(input("Enter the number of the book you would like to remove.\n"))
+    if selected_book_num <= len(library) and selected_book_num >= 1:
+        book = library[selected_book_num - 1]
+        section_to_update = input("Would you like to edit the book's title (t), author (a), year (y), or genre (g)?")
+        if section_to_update == "t":
+            new_title = input("What is the new title of the book?")
+            book["title"] = new_title
+        elif section_to_update == "a":
+            new_author = input("What is the new author of the book?")
+            book["author"] = new_author
+        elif section_to_update == "y":
+            new_year = input("What is the new year of the book?")
+            book["year"] = new_year
+        elif section_to_update == "g":
+            new_genre = input("What is the new genre of the book?")
+            book["genre"] = new_genre
+        else:
+            print("That is not an option.")
+    else:
+        print("That book is not in your library.")
 #function to run the game
 def start_library(library_reader):
     library = load_library(library_reader)
@@ -86,10 +122,10 @@ def start_library(library_reader):
             remove_book(library)
         elif choice == "5":
     #Function to search the items
-            search_book(library_reader)
+            search_book(library)
         elif choice == "6":
     #Function to update an item
-            update_book(library_reader)
+            update_book(library)
         elif choice == "7":
     #Function to save the library
             save_library(library)
