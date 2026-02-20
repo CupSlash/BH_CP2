@@ -20,4 +20,6 @@ def get_user_content(file_path):
         return user_content
 #Function to add content to document
 def add_content_to_document(file_path, new_content):
-    pass
+    ensure_file_exists
+    with open(file_path, "a") as f:
+        f.write(new_content)
