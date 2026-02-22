@@ -1,4 +1,11 @@
 #BH 2nd file_handling.py
+def get_content_parts(file_path):
+    ensure_file_exists(file_path)
+    with open(file_path, "r") as f:
+        content = f.read()
+        index_pos = content.find("Word Count:")
+        user_content = content[:index_pos].strip() if index_pos != -1 else content.strip()
+        return { user_content: user_content, document_info: document_info }
 def ensure_file_exists(file_path):
     try:
         with open(file_path, "r") as f:
@@ -20,6 +27,6 @@ def get_user_content(file_path):
         return user_content
 #Function to add content to document
 def add_content_to_document(file_path, new_content):
-    ensure_file_exists
+    ensure_file_exists(file_path)
     with open(file_path, "a") as f:
         f.write(new_content)

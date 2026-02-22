@@ -17,11 +17,13 @@ def menu():
             word_count = len(user_content.split(" ")) 
             timestamp = get_timestamp()
             update_document_info(file_path, word_count, timestamp)
+            print("Document info updated successfully!", f"Word Count: {word_count}")
         elif choice == '2':
-            get_user_content(file_path)
+            print(f"Document Content:\n{get_user_content(file_path)}")
         elif choice == '3':
             new_content = input("Enter new content to add to the document:")
             add_content_to_document(file_path, new_content)
+            print("Content added successfully!")
         elif choice == '4':
             print("See you later!")
             break
