@@ -1,5 +1,5 @@
 #BH 2nd file_handling.py
-#import sys
+#import sys and os
 import sys
 import os
 #Function to view document
@@ -38,6 +38,7 @@ def add_content_to_document(file_path, new_content):
             if len(content_parts['user_content']) > 0:
                 f.write(f"{content_parts['user_content']} ")
             f.write(new_content)
-            f.write(f"\n\n{content_parts['document_info']}")
+            if len(content_parts['document_info']) > 0:
+                f.write(f"\n\n{content_parts['document_info']}")
     except Exception as e:
         sys.exit(f"An error occurred while adding content to the document: {file_path}")
