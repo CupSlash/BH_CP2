@@ -34,5 +34,4 @@ def fibonacci2(n):
         return 1
     else:
         return fibonacci2(n-1) + fibonacci2(n-2)
-    
 print(fibonacci2(10))
