@@ -1,7 +1,6 @@
 #BH 2nd fractal_generator main.py
 #imports
 from helper import *
-import turtle
 #define menu function
 def menu():
     #introduce the user
@@ -22,5 +21,5 @@ def menu():
     #tell user what they entered
     print("Generating Sierpinski Triangle with depth", depth, "and color", color)
     #draw the triangle
-    draw_triangle(color, depth, turtle)
+    draw_triangle()
 menu()
