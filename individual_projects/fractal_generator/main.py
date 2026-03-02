@@ -17,8 +17,8 @@ def menu():
             depth = int(depth)
             break
     while True:
-        pen_color = input("Enter triangle color, can be one of: red, blue, green, yellow, purple, orange, pink, brown, black: ")
-        if pen_color not in ["red", "blue", "green", "yellow", "purple", "orange", "pink", "brown", "black"]:
+        pen_color = input("Enter triangle color, can be one of: red, blue, green, yellow, purple, orange, pink, brown, black, white: ")
+        if pen_color not in ["red", "blue", "green", "yellow", "purple", "orange", "pink", "brown", "black", "white"]:
             print("Invalid input. Please enter a valid color.")
         else:
             break
@@ -37,5 +37,6 @@ def menu():
     #save the triangle if user wants
     if should_save == 'y':
         save_file()
+    #keep the picture up so they can view it
     done()
 menu()
