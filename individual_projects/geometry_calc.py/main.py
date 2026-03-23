@@ -3,7 +3,7 @@
 def main():
 #while loop so code repeats
     while True:
-    #   Design a text-based menu for interacting with the calculator
+    #Design a text-based menu for interacting with the calculator
         choice = input("What would you like to do?\n 1. Create a shape\n 2. Select a shape\n 3. View a shape\n 4. Compare Shapes\n 5. Sort Shapes\n 6. Formula guide\n 7. Quit\n")
         #Creating a shape!!!
         if choice == "1":
@@ -22,10 +22,7 @@ def main():
                 l = input("What is the length of the square's side?")
         #Shape selection 
         if choice == "2":
-            selection = input("Select a shape from the following list.")
-            else:
-                print("That is not an option.")
-            #incorrect input
+            selection = input("Select a shape from the following list.")#FIX
         #Shape view
         if choice == "3":
         #Comparing shapes
@@ -38,4 +35,6 @@ def main():
         if choice == "7":
             break
         #incorrect input
+        else:
+            print("That is not an option.")
 main()
