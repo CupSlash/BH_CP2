@@ -18,7 +18,7 @@ class ClassSubject:
         self.room = room
         self.teacher = teacher
     def __str__(self):
-        return f"Name: {self.name}\nRoom: {self.room}\nTeacher: {self.teacher}"
+        return f"Name: {self.name}Room: {self.room}Teacher: {self.teacher}"
 first = ClassSubject("Computer Programming 2", 200)
 second = ClassSubject("Computer Programming 2", 200)
 third = ClassSubject("Computer Science Principles", 200)

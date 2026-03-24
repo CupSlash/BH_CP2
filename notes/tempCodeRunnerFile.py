@@ -1,0 +1,1 @@
+Name: {self.name}\nRoom: {self.room}\nTeacher: {self.teacher}"
