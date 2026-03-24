@@ -71,6 +71,19 @@ def main():
                     print(f"The perimeter of the shape is: {round(selected_shape.calculate_perimeter(), 2)}")
                 else:
                     print("That is not an option.")
+        #Formula guide
+        elif choice == "6":
+            formula = input("Would you like to see the formulas for a circle (c), triangle (t), rectangle (r), or a square (s)?
+                if formula == "c":
+                elif formula == "t":
+                elif formula == "r":
+                elif formula == "s":
+                else:
+                    print("That is not an option, please try again.")
+        #Quit app
+        elif choice == "7":
+            print("Please come again soon.")
+            break
         #incorrect input
         else:
             print("That is not an option.")
