@@ -1,5 +1,5 @@
 #BH 2nd Menu Response Functions
-#define functions below
+#define menu response functions below
 def add_new_student():
     pass
 def add_grade_to_student():

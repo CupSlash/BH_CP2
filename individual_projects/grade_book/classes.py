@@ -15,6 +15,7 @@ class Student:
         pass
     def determine_letter_grade():
         pass
+#REMEMBER TO ADD __INIT__ 
 #GradeBook class
 class GradeBook:
     def __init__(self):
