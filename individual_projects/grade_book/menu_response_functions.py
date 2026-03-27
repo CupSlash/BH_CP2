@@ -16,8 +16,13 @@ def add_grade_to_student():
     grade = input("Enter grade (0-100): ")
     grade = check_float_value()
 def view_student_record():
-    pass
+    student_id = input("Enter student ID: ")
+    student_id = validate_student_id()
+    if validate_student_id() == True:
+        for student in grade_book.students:
+            print(student_id.student)
 def view_all_students():
-    pass
+    for student in grade_book.students:
+        print(student)
 def view_class_summary():
     pass
