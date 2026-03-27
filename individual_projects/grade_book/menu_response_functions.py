@@ -12,9 +12,9 @@ def add_new_student():
     grade_book.add_student(new_student)    
 def add_grade_to_student():
     student_id = input("Enter student ID: ")
+    student_id = validate_student_id()
     grade = input("Enter grade (0-100): ")
-    grade = validate_score_input(grade)
-
+    grade = check_float_value()
 def view_student_record():
     pass
 def view_all_students():
