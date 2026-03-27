@@ -6,7 +6,7 @@ from menu_response_functions import *
 def main():
     print("Welcome to the Class Grade Book!")
     while True:
-        menu_response = input(" 1. Add New Student\n 2. Add Grade to Student\n 3. View Student Record\n 4. View All Students\n 5. Class Summary \n 6. Exit\n")
+        menu_response = input(" 1. Add New Student\n 2. Add Grade to Student\n 3. View Student Record\n 4. View All Students\n 5. View Class Summary \n 6. Exit\n")
         if menu_response == "1":
             #Create a function to add a new student to the class.
             add_new_student()
@@ -21,7 +21,7 @@ def main():
             view_all_students()
         elif menu_response == "5":
             #Create a function to view the class summary.
-            class_summary()
+            view_class_summary()
         elif menu_response == "6":
             #Add a menu response for quitting the app.
             print("See you again soon!")
