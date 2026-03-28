@@ -33,5 +33,7 @@ class GradeBook:
         matching_students = filter(lambda student: name in student.name, self.students)
         return list(matching_students)
     def search_students_by_id(self, student_id):
-        matching_students = filter(lambda student: student.student_id == student_id, self.students)
-        return list(matching_students)
+        for student in self.students:
+            if student.student_id == student_id:
+                return student
+        return None

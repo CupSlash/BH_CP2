@@ -17,13 +17,13 @@ def add_grade_to_student():
     grade = check_float_value()
 def view_student_record():
     student_id = input("Enter student ID: ")
-    student_id = validate_student_id(student_id)
-    if student_id == True:
-        for student in grade_book.students:
-            if student.student_id == student.id:
-                print(student)
+    student = grade_book.search_students_by_id(student_id)
+    if student:
+        print(student)
+    else:
+        print(f"No student by ID {student_id} found.")
 def view_all_students():
     for student in grade_book.students:
         print(student)
 def view_class_summary():
-    
+    pass
