@@ -1,14 +1,15 @@
 #BH 2nd Menu Response Functions
+#imports
 from classes import *
 from input_validators import *
-
+#GradeBook instance
 grade_book = GradeBook()
-
 #define menu response functions below
 def add_new_student():
     name = input("Enter student name: ")
     student_id = input("Enter student ID: ")
-    new_student = Student(name, student_id)
+    grade_level = input("Enter grade level: ")
+    new_student = Student(name, student_id, grade_level)
     existing_student = grade_book.search_students_by_id(student_id)
     if existing_student != None:
         print(f"A student with ID {student_id} already exists. Please try again.")
@@ -24,15 +25,15 @@ def add_grade_to_student():
     else:
         print(f"No student by ID {student_id} found.")
 def view_student_record():
-    choice = input("Search by ID or name? ")
-    if choice == "ID":
+    choice = input("Search by 1. ID or 2. name? ")
+    if choice == "1":
         student_id = input("Enter student ID: ")
         student = grade_book.search_students_by_id(student_id)
         if student != None:
             students = [student]
         else:
             students = []
-    elif choice == "name":
+    elif choice == "2":
         name = input("Enter student name: ")
         students = grade_book.search_students_by_name(name)
     else:
@@ -57,3 +58,14 @@ def view_all_students():
             print(student)
 def view_class_summary():
     pass
+def view_class_statistics():
+    statistics = grade_book.calculate_grades()
+    if statistics is None:
+        print("No grades available.")
+        return
+    print(f"Total Students: {statistics['total_students']}")
+    print(f"Class Average: {statistics['average']}")
+    print(f"Highest Grade: {statistics['highest']}")
+    print(f"Lowest Grade: {statistics['lowest']}")
+
+    
