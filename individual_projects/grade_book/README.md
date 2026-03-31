@@ -13,6 +13,7 @@ When you run the program, you will see a menu of options.
 4. View All Students
     - Allows you to see how all of your students are doing rather than an individual.
 5. View Class Summary
+    - Allows you to see the average grade in your class.
 6. View Class Statistics
     - Allows you to see max, min, and mean for your students' grades.
 7. Exit
