@@ -5,6 +5,7 @@ from input_validators import *
 #GradeBook instance
 grade_book = GradeBook()
 #define menu response functions below
+#ADD NEW STUDENT
 def add_new_student():
     name = input("Enter student name: ")
     student_id = input("Enter student ID: ")
@@ -14,7 +15,8 @@ def add_new_student():
     if existing_student != None:
         print(f"A student with ID {student_id} already exists. Please try again.")
         return
-    grade_book.add_student(new_student)    
+    grade_book.add_student(new_student) 
+#ADD GRADE TO STUDENT   
 def add_grade_to_student():
     student_id = input("Enter student ID: ")
     student = grade_book.search_students_by_id(student_id)
@@ -24,6 +26,7 @@ def add_grade_to_student():
         student.add_grade(grade)
     else:
         print(f"No student by ID {student_id} found.")
+#VIEW STUDENT RECORD
 def view_student_record():
     choice = input("Search by 1. ID or 2. name? ")
     if choice == "1":
@@ -50,16 +53,23 @@ def view_student_record():
                     print(grade)
     else:
         print("No students found.")
+#VIEW ALL STUDENTS
 def view_all_students():
     if len(grade_book.students) == 0:
         print("No students in the class yet.")
     else:
         for student in grade_book.students:
             print(student)
+#VIEW CLASS SUMMARY
 def view_class_summary():
-    pass
+    statistics = grade_book.calc_max_min_average()
+    if statistics is None:
+        print("No grades available.")
+        return
+    print(f"Class Average: {statistics['average']}")
+#VIEW CLASS STATISTICS
 def view_class_statistics():
-    statistics = grade_book.calculate_grades()
+    statistics = grade_book.calc_max_min_average()
     if statistics is None:
         print("No grades available.")
         return
@@ -67,5 +77,3 @@ def view_class_statistics():
     print(f"Class Average: {statistics['average']}")
     print(f"Highest Grade: {statistics['highest']}")
     print(f"Lowest Grade: {statistics['lowest']}")
-
-    
