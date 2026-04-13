@@ -2,7 +2,7 @@
 
 ## Description
 
-- This Project allows you to interact with some of the python projects I am most proud of. Feel free to mess with the interface as much as you like, I hope you enjoy what I've created this year!
+- This project allows you to interact with some of the python projects I have done this year. Select a project in the bottom right and the information screen will tell you about the project. Once you have found a project you like, press 'Run Project' below and visit the VS code terminal to interact with the application. Feel free to mess with the interface as much as you like, I hope you enjoy what I've created this year!
 
 ## Contributors
 

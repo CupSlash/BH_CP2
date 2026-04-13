@@ -35,6 +35,8 @@ class Portfolio:
         tk.Label(self.root, text="Programming Portfolio", font=("Arial", 18)).pack(pady=10)
         main_frame = tk.Frame(self.root)
         main_frame.pack(fill="both", expand=True)
+        intro = tk.Label(main_frame, wraplength=500, justify="left", text="This project allows you to interact with some of the python projects I have done this year. Select a project in the bottom right and the information screen will tell you about the project. Once you have found a project you like, press 'Run Project' below and visit the VS code terminal to interact with the application. Feel free to mess with the interface as much as you like, I hope you enjoy what I've created this year!")
+        intro.pack(fill="x")
         projects_frame = tk.Frame(main_frame)
         projects_frame.pack(side="left", padx=10)
         information_frame = tk.Frame(main_frame)
