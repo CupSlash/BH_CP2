@@ -4,7 +4,6 @@ pygame.init()
 WIDTH, HEIGHT = 400,400
 GRID_SIZE = 8
 CELL_SIZE = WIDTH // GRID_SIZE
-WHITE = (255,255,255)
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Candy Crush")
 grid = [[random.randint(1,3) for _ in range(GRID_SIZE)] for _ in range(GRID_SIZE)]
@@ -37,24 +36,29 @@ def fill_empty_spaces():
         empty_count = sum(1 for row in range(GRID_SIZE) if grid[row][col] == 0)
         for _ in range(empty_count):
             grid[GRID_SIZE - 1][_] = random.randint(1,3)
-    running = True
-    while running: 
-        for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                running = False
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                col = event.pos[0] // CELL_SIZE
-                row = event.pos[1] // CELL_SIZE
-                if 0 <= row < GRID_SIZE and 0 <= col < GRID_SIZE:
-                    handle_click(row, col)
-        screen.fill(WHITE)
-        for row in range(GRID_SIZE):
-            for col in range(GRID_SIZE):
-                candy_type = grid[row][col]
-                candy_color = (255,0,0) if candy_type == 1 else (0,255,0) if candy_type == 2 else (0,0,255)
-                pygame.draw.rect(screen, candy_color, (col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE))
-        matches = detect_match()
-        if matches:
-            for row, col in matches:
-                grid[row][col] = 0
-        pygame.display.flip()
+running = True
+while running: 
+    for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            col = event.pos[0] // CELL_SIZE
+            row = event.pos[1] // CELL_SIZE
+            if 0 <= row < GRID_SIZE and 0 <= col < GRID_SIZE:
+                handle_click(row, col)
+    for row in range(GRID_SIZE):
+        for col in range(GRID_SIZE):
+            candy_type = grid[row][col]
+            if candy_type == 1:
+                candy_color = (255,0,0) 
+            elif candy_type == 2:
+                candy_color = (0,255,0)
+            elif candy_type == 3:
+                candy_color = (0,0,255) 
+            else:
+                candy_color = (0,0,0)
+            pygame.draw.rect(screen, candy_color, (col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE))
+    matches = detect_match()
+    if matches:
+        for row, col in matches:
+            grid[row][col] = 0
+    pygame.display.flip()
+pygame.quit()
