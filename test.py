@@ -44,18 +44,29 @@ while running:
             row = event.pos[1] // CELL_SIZE
             if 0 <= row < GRID_SIZE and 0 <= col < GRID_SIZE:
                 handle_click(row, col)
-    for row in range(GRID_SIZE):
-        for col in range(GRID_SIZE):
-            candy_type = grid[row][col]
-            if candy_type == 1:
-                candy_color = (255,0,0) 
-            elif candy_type == 2:
-                candy_color = (0,255,0)
-            elif candy_type == 3:
-                candy_color = (0,0,255) 
+    while True:
+        for row in range(GRID_SIZE):
+            items_in_type1 = 0
+            items_in_type2 = 0
+            items_in_type3 = 0
+            for col in range(GRID_SIZE):
+                candy_type = grid[row][col]
+                if candy_type == 1:
+                    items_in_type1 += 1
+                    candy_color = (255,0,0) 
+                elif candy_type == 2:
+                    items_in_type2 += 1
+                    candy_color = (0,255,0)
+                elif candy_type == 3:
+                    items_in_type3 += 1
+                    candy_color = (0,0,255) 
+                else:
+                    candy_color = (0,0,0)
+            if items_in_type2 % 3 != 0 and items_in_type3 % 3 != 0 and items_in_type1 % 3 != 0:
+                continue
             else:
-                candy_color = (0,0,0)
-            pygame.draw.rect(screen, candy_color, (col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE))
+                pygame.draw.rect(screen, candy_color, (col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE))
+                break
     matches = detect_match()
     if matches:
         for row, col in matches:
