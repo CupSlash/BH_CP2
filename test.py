@@ -2,11 +2,11 @@ import pygame
 import random
 
 pygame.init()
-WIDTH, HEIGHT = 400, 400
-GRID_SIZE = 8
+WIDTH, HEIGHT = 600, 600
+GRID_SIZE = 6
 CELL_SIZE = WIDTH // GRID_SIZE
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Candy Crush")
+pygame.display.set_caption("Treat Trios!")
 
 grid = [[random.randint(1, 3) for _ in range(GRID_SIZE)] for _ in range(GRID_SIZE)]
 selected_candy = None
